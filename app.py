@@ -39,11 +39,12 @@ def add_contact():
             db.session.add(contact)
             db.session.commit()
             flash('Contact added successfully!', 'success')
-            return redirect(url_for('list_contacts'))
+            return redirect(url_for('/list_contacts'))
+        
         except Exception as e:
             db.session.rollback()
             flash('Error adding contact. Phone number might be duplicate.', 'error')
-    return render_template('add_contact.html', form=form)
+    return render_template('/contact.html', form=form) #bug added 'add_contact.html'
 
 @app.route('/update/<int:id>', methods=['GET', 'POST'])
 def update_contact(id):
